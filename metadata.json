@@ -1,0 +1,6 @@
+{
+  "name": "Fossil - EV Charging & Gas Station",
+  "description": "Fossil is a modern EV charging and gas station website template built with React, featuring service catalogs, interactive quotation calculator, pricing plans, and newsletter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

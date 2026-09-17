@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-outfit: "Outfit", sans-serif;
+  --font-teko: "Teko", sans-serif;
+  --color-brand-orange: #E17226;
+  --color-brand-orange-hover: #C65F1D;
+  --color-brand-navy: #01263c;
+  --color-brand-navy-dark: #011a2a;
+  --color-brand-heading: #01263c;
+  --color-brand-light: #f8f9fa;
+  --color-brand-muted: #667085;
+}
+
+body {
+  font-family: var(--font-outfit);
+  color: #555e69;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit);
+    color: var(--color-brand-heading);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.font-teko {
+  font-family: var(--font-teko);
+}
+
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 25s linear infinite;
+}
+
