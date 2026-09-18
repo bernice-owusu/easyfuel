@@ -85,14 +85,6 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a
-                  href="#features"
-                  className="hover:text-[#E17226] transition-colors"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a
                   href="#solutions"
                   className="hover:text-[#E17226] transition-colors"
                 >
@@ -247,9 +239,7 @@ export const Footer: React.FC<FooterProps> = ({
             </p>
             <p className="text-center sm:text-right">
               Developed by{" "}
-              <span className="text-white font-medium">
-                Bsystems Limited
-              </span>
+              <span className="text-white font-medium">Bsystems Limited</span>
             </p>
           </div>
         </div>
