@@ -80,11 +80,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 lg:gap-8">
-            {/* Hours */}
-            <span className="inline-flex items-center gap-2">
-              <Clock className="w-3.5 h-3.5 text-[#E17226]" />
-              Mon – Fri &nbsp;08:00 – 20:00
-            </span>
             {/* Address */}
             <span className="hidden sm:inline-flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-[#E17226]" />
