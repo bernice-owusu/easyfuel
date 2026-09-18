@@ -20,10 +20,6 @@ export const NAV_ITEMS: NavItem[] = [
     href: "#solutions",
   },
   {
-    name: "Features",
-    href: "#features",
-  },
-  {
     name: "How It Works",
     href: "#how-it-works",
   },

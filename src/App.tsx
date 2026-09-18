@@ -3,36 +3,42 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { HeroSlider } from './components/HeroSlider';
-import { TrustStrip } from './components/TrustStrip';
-import { ProblemSection } from './components/ProblemSection';
-import { SolutionIntro } from './components/SolutionIntro';
-import { CoreCapabilities } from './components/CoreCapabilities';
-import { HowItWorks } from './components/HowItWorks';
-import { CommandCentre } from './components/CommandCentre';
-import { Reconciliation } from './components/Reconciliation';
-import { Payments } from './components/Payments';
-import { Analytics } from './components/Analytics';
-import { Industries } from './components/Industries';
-import { Integrations } from './components/Integrations';
-import { Security } from './components/Security';
-import { FeatureGrid } from './components/FeatureGrid';
-import { Resources } from './components/Resources';
-import { QuotationSection } from './components/QuotationSection';
-import { Footer } from './components/Footer';
-import { ScrollToTop } from './components/ScrollToTop';
-import { AllServicesPage } from './components/AllServicesPage';
+import React, { useState, useEffect } from "react";
+import { Header } from "./components/Header";
+import { HeroSlider } from "./components/HeroSlider";
+import { TrustStrip } from "./components/TrustStrip";
+import { ProblemSection } from "./components/ProblemSection";
+import { SolutionIntro } from "./components/SolutionIntro";
+import { CoreCapabilities } from "./components/CoreCapabilities";
+import { HowItWorks } from "./components/HowItWorks";
+import { CommandCentre } from "./components/CommandCentre";
+import { Reconciliation } from "./components/Reconciliation";
+import { Payments } from "./components/Payments";
+import { Analytics } from "./components/Analytics";
+import { Industries } from "./components/Industries";
+import { Integrations } from "./components/Integrations";
+import { Security } from "./components/Security";
+import { FeatureGrid } from "./components/FeatureGrid";
+import { Resources } from "./components/Resources";
+import { QuotationSection } from "./components/QuotationSection";
+import { Footer } from "./components/Footer";
+import { ScrollToTop } from "./components/ScrollToTop";
+import { AllServicesPage } from "./components/AllServicesPage";
 
 export default function App() {
-  const [isServicesPage, setIsServicesPage] = useState(() => window.location.hash === '#/services');
-  const [legalModalText, setLegalModalText] = useState<{ title: string; content: string } | null>(null);
+  const [isServicesPage, setIsServicesPage] = useState(
+    () => window.location.hash === "#/services",
+  );
+  const [legalModalText, setLegalModalText] = useState<{
+    title: string;
+    content: string;
+  } | null>(null);
 
   useEffect(() => {
-    const onHashChange = () => setIsServicesPage(window.location.hash === '#/services');
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    const onHashChange = () =>
+      setIsServicesPage(window.location.hash === "#/services");
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
   useEffect(() => {
@@ -40,20 +46,20 @@ export default function App() {
       window.scrollTo({ top: 0 });
       return;
     }
-    const id = window.location.hash.replace('#', '');
+    const id = window.location.hash.replace("#", "");
     const el = id ? document.getElementById(id) : null;
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) el.scrollIntoView({ behavior: "smooth" });
     else window.scrollTo({ top: 0 });
   }, [isServicesPage]);
 
   const scrollToQuotation = () => {
     if (isServicesPage) {
-      window.location.hash = '#quotation';
+      window.location.hash = "#quotation";
       return;
     }
-    const el = document.getElementById('quotation');
+    const el = document.getElementById("quotation");
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -108,7 +114,7 @@ export default function App() {
             <Security />
 
             {/* 14. Feature Grid */}
-            <FeatureGrid />
+            {/* <FeatureGrid /> */}
 
             {/* 15. Resources & FAQ */}
             <Resources />
@@ -120,16 +126,16 @@ export default function App() {
             <Footer
               onOpenPrivacy={() =>
                 setLegalModalText({
-                  title: 'Privacy Policy',
+                  title: "Privacy Policy",
                   content:
-                    'EasyFuel collects and processes station operational and financial data solely to operate and improve the platform. Enterprise AES-256 encryption protects all telemetry, transaction and reconciliation records. We never sell personal or organizational data to third parties.',
+                    "EasyFuel collects and processes station operational and financial data solely to operate and improve the platform. Enterprise AES-256 encryption protects all telemetry, transaction and reconciliation records. We never sell personal or organizational data to third parties.",
                 })
               }
               onOpenTerms={() =>
                 setLegalModalText({
-                  title: 'Terms & Conditions',
+                  title: "Terms & Conditions",
                   content:
-                    'EasyFuel is an enterprise fuel station operations platform provided under a quotation-based commercial agreement. All dispensing, sales, reconciliation and approval records remain governed by the implementing organization plus applicable petroleum retail and hazardous materials regulations.',
+                    "EasyFuel is an enterprise fuel station operations platform provided under a quotation-based commercial agreement. All dispensing, sales, reconciliation and approval records remain governed by the implementing organization plus applicable petroleum retail and hazardous materials regulations.",
                 })
               }
             />
@@ -144,7 +150,9 @@ export default function App() {
       {legalModalText && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs">
           <div className="w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-100">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">{legalModalText.title}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              {legalModalText.title}
+            </h3>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
               {legalModalText.content}
             </p>
