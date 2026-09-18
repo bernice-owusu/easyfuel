@@ -74,10 +74,10 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onOpenQuote }) => {
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a
-                href="#features"
+                href="#about"
                 className="inline-flex items-center gap-2 px-7 py-4 text-white hover:text-white font-medium text-base rounded-full border border-white/20 hover:border-[#E17226]/70 hover:bg-white/5 transition-all"
               >
-                Explore Features
+                Read More
               </a>
             </div>
           </motion.div>

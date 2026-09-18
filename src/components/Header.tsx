@@ -178,6 +178,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               >
                 Request a Demo
               </button>
+              <a
+                href="https://easyfuel.app/login"
+                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 border-2 border-[#E17226] text-[#E17226] font-medium text-sm sm:text-base rounded-full transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Login
+              </a>
 
               <button
                 type="button"
@@ -262,6 +268,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               >
                 Request a Demo
               </button>
+              <a
+                href="https://easyfuel.app/login"
+                className="w-full py-3 border-2 border-[#E17226] text-[#E17226] hover:bg-[#E17226] hover:text-white text-center font-semibold rounded-full transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Login
+              </a>
               <div className="flex flex-col items-center gap-1.5 text-xs text-gray-400 pt-2">
                 <span>No 6 Eseefo Street, Asylum Down, Accra</span>
                 <span>(0)302 254340 • info@easyfuel.com</span>
