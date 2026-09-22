@@ -123,7 +123,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               <img
                 src="/assets/img/logo.png"
                 alt="EasyFuel"
-                className="h-11 sm:h-12 w-auto object-contain"
+                className="h-11 sm:h-20 w-auto object-contain"
               />
             </a>
 

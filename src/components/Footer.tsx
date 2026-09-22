@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({
               <img
                 src="/assets/img/logo.png"
                 alt="EasyFuel"
-                className="h-11 w-auto"
+                className="h-20 w-auto"
               />
             </a>
             <p className="text-sm text-[#E17226] font-semibold tracking-wide mb-4">
