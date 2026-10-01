@@ -128,3 +128,49 @@ export interface OnboardingStatusResponse {
   rejection_reason: string | null;
   updated_at: string | null;
 }
+
+export interface DemoRequestContact {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  job_title: string;
+}
+
+export type DemoInterest =
+  | "sales"
+  | "inventory"
+  | "reconciliation"
+  | "reporting"
+  | "analytics"
+  | "payments"
+  | "integrations"
+  | "security";
+
+export interface DemoRequestPayload {
+  company_name: string;
+  contact: DemoRequestContact;
+  station_count: number;
+  current_system: string;
+  interests: DemoInterest[];
+  preferred_demo_at: string;
+  timezone: string;
+  message: string;
+  privacy_accepted: boolean;
+  consent_version: string;
+  source: string;
+  campaign: string | null;
+  referrer_url: string;
+  captcha_token?: string;
+  website_confirmation: string;
+}
+
+export interface DemoRequestResponse {
+  request_reference: string;
+  status: string;
+}
+
+export interface DemoRequestApiResponse {
+  message: string;
+  data: DemoRequestResponse;
+}

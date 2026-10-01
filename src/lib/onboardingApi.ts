@@ -4,6 +4,8 @@ import type {
   OnboardingStatus,
   OnboardingStatusResponse,
   OnboardingSubmission,
+  DemoRequestPayload,
+  DemoRequestApiResponse,
 } from "../types";
 
 const DEFAULT_BASE_URL = "https://easyfuel.app/api/v1";
@@ -277,4 +279,22 @@ export const clearOnboardingSession = (): void => {
   } catch {
     // Ignore.
   }
+};
+
+export const submitDemoRequest = async (
+  payload: DemoRequestPayload,
+  idempotencyKey: string,
+): Promise<DemoRequestApiResponse> => {
+  const { data } = await request<DemoRequestApiResponse>(
+    "/public/demo-requests",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Idempotency-Key": idempotencyKey,
+      },
+      body: JSON.stringify(payload),
+    },
+  );
+  return data;
 };

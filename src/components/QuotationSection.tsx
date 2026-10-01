@@ -1,38 +1,161 @@
 import React, { useState } from "react";
-import { Send, PhoneCall, CheckCircle, CalendarCheck } from "lucide-react";
+import {
+  Send,
+  PhoneCall,
+  CheckCircle,
+  CalendarCheck,
+  Loader2,
+} from "lucide-react";
+import {
+  newIdempotencyKey,
+  submitDemoRequest,
+  OnboardingApiError,
+} from "../lib/onboardingApi";
+import type { DemoRequestPayload, DemoInterest } from "../types";
+
+const INTERESTS_OPTIONS: { value: DemoInterest; label: string }[] = [
+  { value: "sales", label: "Sales & POS" },
+  { value: "inventory", label: "Inventory & Stock" },
+  { value: "reconciliation", label: "Reconciliation" },
+  { value: "reporting", label: "Reporting & Analytics" },
+  { value: "analytics", label: "Advanced Analytics" },
+  { value: "payments", label: "Payments & Billing" },
+  { value: "integrations", label: "Integrations" },
+  { value: "security", label: "Security & Compliance" },
+];
 
 export const QuotationSection: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    industry: "",
-    fuelStations: "",
-    country: "",
+  const [formData, setFormData] = useState<Partial<DemoRequestPayload>>({
+    company_name: "",
+    contact: {
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      job_title: "",
+    },
+    station_count: 1,
+    current_system: "",
+    interests: [],
+    preferred_demo_at: "",
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     message: "",
-    demoDate: "",
+    privacy_accepted: false,
+    consent_version: "2026-09",
+    source: "public_landing_page",
+    campaign: null,
+    referrer_url: document.referrer,
+    website_confirmation: "",
   });
-
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [demoReference, setDemoReference] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value, type } = e.target;
+    if (name.startsWith("contact.")) {
+      const field = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        contact: { ...prev.contact!, [field]: value },
+      }));
+    } else if (type === "number") {
+      setFormData((prev) => ({ ...prev, [name]: parseInt(value, 10) || 0 }));
+    } else if (type === "checkbox" && name === "interests") {
+      const checked = (e.target as HTMLInputElement).checked;
+      const interestValue = value as DemoInterest;
+      setFormData((prev) => ({
+        ...prev,
+        interests: prev.interests?.includes(interestValue)
+          ? prev.interests!.filter((i) => i !== interestValue)
+          : [...(prev.interests || []), interestValue],
+      }));
+    } else if (name === "privacy_accepted") {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: (e.target as HTMLInputElement).checked,
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError(null);
+
+    const contact = formData.contact!;
+    if (
+      !contact.first_name ||
+      !contact.last_name ||
+      !contact.email ||
+      !contact.phone ||
+      !formData.company_name ||
+      !formData.current_system ||
+      !formData.interests?.length ||
+      !formData.preferred_demo_at ||
+      !formData.message ||
+      !formData.privacy_accepted
+    ) {
+      setSubmitError(
+        "Please fill in all required fields and accept the privacy policy.",
+      );
+      return;
+    }
+
+    setSubmitting(true);
+    const idempotencyKey = newIdempotencyKey();
+
+    try {
+      const response = await submitDemoRequest(
+        formData as DemoRequestPayload,
+        idempotencyKey,
+      );
+      setDemoReference(response.data.request_reference);
+      setSubmitted(true);
+    } catch (caught) {
+      if (caught instanceof OnboardingApiError) {
+        setSubmitError(
+          caught.message || "Something went wrong. Please try again.",
+        );
+      } else {
+        setSubmitError("Something went wrong. Please try again.");
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setSubmitError(null);
+    setDemoReference(null);
     setFormData({
-      name: "",
-      company: "",
-      email: "",
-      phone: "",
-      industry: "",
-      fuelStations: "",
-      country: "",
+      company_name: "",
+      contact: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        job_title: "",
+      },
+      station_count: 1,
+      current_system: "",
+      interests: [],
+      preferred_demo_at: "",
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       message: "",
-      demoDate: "",
+      privacy_accepted: false,
+      consent_version: "2026-09",
+      source: "public_landing_page",
+      campaign: null,
+      referrer_url: document.referrer,
+      website_confirmation: "",
     });
   };
 
@@ -70,34 +193,51 @@ export const QuotationSection: React.FC = () => {
               <p className="text-gray-600 max-w-md mx-auto mb-6">
                 Thank you,{" "}
                 <span className="font-semibold text-gray-900">
-                  {formData.name}
+                  {formData.contact?.first_name} {formData.contact?.last_name}
                 </span>{" "}
                 from{" "}
                 <span className="font-semibold text-gray-900">
-                  {formData.company || "your company"}
+                  {formData.company_name || "your company"}
                 </span>
                 . Our team will reach out shortly to confirm your demo for{" "}
                 <span className="font-semibold text-orange-600">
-                  {formData.demoDate || "a time that works for you"}
+                  {formData.preferred_demo_at
+                    ? new Date(formData.preferred_demo_at).toLocaleDateString(
+                        undefined,
+                        {
+                          weekday: "short",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        },
+                      )
+                    : "a time that works for you"}
                 </span>
                 .
               </p>
               <div className="p-4 rounded-xl bg-gray-50 max-w-sm mx-auto mb-8 text-left text-sm text-gray-600 space-y-1">
                 <div>
+                  <span className="font-semibold">Reference:</span>{" "}
+                  <span className="font-mono text-brand-orange">
+                    {demoReference}
+                  </span>
+                </div>
+                <div>
                   <span className="font-semibold">Industry:</span>{" "}
-                  {formData.industry}
+                  {formData.current_system}
                 </div>
                 <div>
                   <span className="font-semibold">Fuel Stations:</span>{" "}
-                  {formData.fuelStations}
+                  {formData.station_count}
                 </div>
                 <div>
-                  <span className="font-semibold">Country:</span>{" "}
-                  {formData.country}
+                  <span className="font-semibold">Interests:</span>{" "}
+                  {formData.interests?.join(", ")}
                 </div>
                 <div>
                   <span className="font-semibold">Contact:</span>{" "}
-                  {formData.phone} | {formData.email}
+                  {formData.contact?.phone} | {formData.contact?.email}
                 </div>
               </div>
               <button
@@ -110,43 +250,87 @@ export const QuotationSection: React.FC = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {submitError && (
+                <div className="flex items-start gap-2 text-sm text-red-700 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
+                  <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                  <span>{submitError}</span>
+                </div>
+              )}
+
               {/* Row 1: Contact Info */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div>
                   <label
-                    htmlFor="demo-name"
+                    htmlFor="demo-first-name"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Name
+                    First Name
                   </label>
                   <input
                     type="text"
-                    id="demo-name"
+                    id="demo-first-name"
+                    name="contact.first_name"
                     required
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    placeholder="Full Name"
+                    value={formData.contact?.first_name || ""}
+                    onChange={handleInputChange}
+                    placeholder="Ama"
                     className={inputClass}
                   />
                 </div>
 
                 <div>
                   <label
+                    htmlFor="demo-last-name"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    id="demo-last-name"
+                    name="contact.last_name"
+                    required
+                    value={formData.contact?.last_name || ""}
+                    onChange={handleInputChange}
+                    placeholder="Mensah"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="demo-job-title"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Job Title
+                  </label>
+                  <input
+                    type="text"
+                    id="demo-job-title"
+                    name="contact.job_title"
+                    required
+                    value={formData.contact?.job_title || ""}
+                    onChange={handleInputChange}
+                    placeholder="Operations Director"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div className="sm:col-span-2 lg:col-span-3">
+                  <label
                     htmlFor="demo-company"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Company
+                    Company Name
                   </label>
                   <input
                     type="text"
                     id="demo-company"
-                    value={formData.company}
-                    onChange={(e) =>
-                      setFormData({ ...formData, company: e.target.value })
-                    }
-                    placeholder="Company Name"
+                    name="company_name"
+                    required
+                    value={formData.company_name || ""}
+                    onChange={handleInputChange}
+                    placeholder="Acme Petroleum Ltd"
                     className={inputClass}
                   />
                 </div>
@@ -161,12 +345,11 @@ export const QuotationSection: React.FC = () => {
                   <input
                     type="email"
                     id="demo-email"
+                    name="contact.email"
                     required
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    placeholder="name@example.com"
+                    value={formData.contact?.email || ""}
+                    onChange={handleInputChange}
+                    placeholder="ama@acme.example"
                     className={inputClass}
                   />
                 </div>
@@ -181,12 +364,11 @@ export const QuotationSection: React.FC = () => {
                   <input
                     type="tel"
                     id="demo-phone"
+                    name="contact.phone"
                     required
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                    placeholder="(+233) 55-..."
+                    value={formData.contact?.phone || ""}
+                    onChange={handleInputChange}
+                    placeholder="0540000000"
                     className={inputClass}
                   />
                 </div>
@@ -199,34 +381,29 @@ export const QuotationSection: React.FC = () => {
                     htmlFor="demo-industry"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Industry
+                    Current System
                   </label>
                   <select
                     id="demo-industry"
+                    name="current_system"
                     required
-                    value={formData.industry}
-                    onChange={(e) =>
-                      setFormData({ ...formData, industry: e.target.value })
-                    }
+                    value={formData.current_system || ""}
+                    onChange={handleInputChange}
                     className={inputClass}
                   >
                     <option value="" disabled>
-                      Select Industry
+                      Select Current System
                     </option>
-                    <option value="Fuel & Gas Stations">
-                      Fuel & Gas Stations
+                    <option value="Spreadsheets">
+                      Spreadsheets (Excel/Google Sheets)
                     </option>
-                    <option value="EV Charging Network">
-                      EV Charging Network
+                    <option value="Paper Records">Paper Records</option>
+                    <option value="Legacy POS">Legacy POS System</option>
+                    <option value="Custom Software">Custom Software</option>
+                    <option value="Other System">Other System</option>
+                    <option value="No System (New Business)">
+                      No System (New Business)
                     </option>
-                    <option value="Fleet Management">Fleet Management</option>
-                    <option value="Logistics & Transport">
-                      Logistics & Transport
-                    </option>
-                    <option value="Retail & Convenience">
-                      Retail & Convenience
-                    </option>
-                    <option value="Other">Other</option>
                   </select>
                 </div>
 
@@ -240,55 +417,88 @@ export const QuotationSection: React.FC = () => {
                   <input
                     type="number"
                     id="demo-stations"
+                    name="station_count"
                     required
                     min="1"
-                    value={formData.fuelStations}
-                    onChange={(e) =>
-                      setFormData({ ...formData, fuelStations: e.target.value })
-                    }
-                    placeholder="e.g. 12"
+                    value={formData.station_count || ""}
+                    onChange={handleInputChange}
+                    placeholder="e.g. 5"
                     className={inputClass}
                   />
                 </div>
 
                 <div>
                   <label
-                    htmlFor="demo-country"
+                    htmlFor="demo-timezone"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Country
+                    Timezone
                   </label>
-                  <input
-                    type="text"
-                    id="demo-country"
-                    required
-                    value={formData.country}
-                    onChange={(e) =>
-                      setFormData({ ...formData, country: e.target.value })
-                    }
-                    placeholder="Ghana"
+                  <select
+                    id="demo-timezone"
+                    name="timezone"
+                    value={formData.timezone || ""}
+                    onChange={handleInputChange}
                     className={inputClass}
-                  />
+                  >
+                    <option value="Africa/Accra">Africa/Accra (GMT)</option>
+                    <option value="Africa/Lagos">Africa/Lagos (WAT)</option>
+                    <option value="Africa/Abidjan">Africa/Abidjan (GMT)</option>
+                    <option value="Africa/Nairobi">Africa/Nairobi (EAT)</option>
+                    <option value="UTC">UTC</option>
+                    <option value="Europe/London">
+                      Europe/London (GMT/BST)
+                    </option>
+                  </select>
                 </div>
               </div>
 
-              {/* Row 3: Preferred Demo Date */}
+              {/* Row 3: Interests */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  Areas of Interest{" "}
+                  <span className="text-brand-orange ml-1">*</span>
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {INTERESTS_OPTIONS.map((interest) => (
+                    <label
+                      key={interest.value}
+                      className="flex items-center gap-2 cursor-pointer p-3 rounded-xl border border-gray-200 hover:border-brand-orange hover:bg-orange-50/40 transition-colors"
+                    >
+                      <input
+                        type="checkbox"
+                        name="interests"
+                        value={interest.value}
+                        checked={
+                          formData.interests?.includes(interest.value) || false
+                        }
+                        onChange={handleInputChange}
+                        className="w-4 h-4 rounded border-gray-300 accent-brand-orange cursor-pointer"
+                      />
+                      <span className="text-sm text-gray-700">
+                        {interest.label}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Row 4: Preferred Demo Date */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-end">
                 <div>
                   <label
                     htmlFor="demo-date"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Preferred Demo Date
+                    Preferred Demo Date & Time
                   </label>
                   <input
-                    type="date"
+                    type="datetime-local"
                     id="demo-date"
+                    name="preferred_demo_at"
                     required
-                    value={formData.demoDate}
-                    onChange={(e) =>
-                      setFormData({ ...formData, demoDate: e.target.value })
-                    }
+                    value={formData.preferred_demo_at || ""}
+                    onChange={handleInputChange}
                     className={inputClass}
                   />
                 </div>
@@ -299,24 +509,59 @@ export const QuotationSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Row 4: Message */}
+              {/* Row 5: Message */}
               <div>
                 <label
                   htmlFor="demo-message"
                   className="block text-sm font-semibold text-gray-700 mb-2"
                 >
-                  Message
+                  Message <span className="text-brand-orange ml-1">*</span>
                 </label>
                 <textarea
                   id="demo-message"
+                  name="message"
                   required
                   rows={4}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  value={formData.message || ""}
+                  onChange={handleInputChange}
                   placeholder="Tell us about your operation, challenges, or what you'd like to see in the demo."
                   className={inputClass}
+                />
+              </div>
+
+              {/* Privacy */}
+              <label className="flex items-start gap-3 cursor-pointer text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  name="privacy_accepted"
+                  checked={formData.privacy_accepted || false}
+                  onChange={handleInputChange}
+                  className="mt-0.5 w-4 h-4 rounded border-gray-300 accent-brand-orange shrink-0 cursor-pointer"
+                />
+                <span>
+                  I accept the{" "}
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-brand-orange hover:underline"
+                  >
+                    Privacy Policy
+                  </a>
+                  .
+                </span>
+              </label>
+
+              {/* Honeypot */}
+              <div className="sr-only" aria-hidden="true">
+                <label htmlFor="demo-website-confirmation">Website</label>
+                <input
+                  id="demo-website-confirmation"
+                  name="website_confirmation"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  defaultValue=""
                 />
               </div>
 
@@ -324,10 +569,20 @@ export const QuotationSection: React.FC = () => {
               <button
                 type="submit"
                 id="request-demo-btn"
-                className="w-full py-4 bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold text-base rounded-xl transition-all shadow-lg shadow-orange-600/25 flex items-center justify-center gap-2 hover:translate-y-[-1px] cursor-pointer"
+                disabled={submitting}
+                className="w-full py-4 bg-brand-orange hover:bg-brand-orange-hover disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-base rounded-xl transition-all shadow-lg shadow-orange-600/25 flex items-center justify-center gap-2 hover:-translate-y-px cursor-pointer"
               >
-                <span>Request a Demo</span>
-                <Send className="w-4 h-4" />
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Submitting…</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Request a Demo</span>
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </form>
           )}
