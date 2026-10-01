@@ -55,10 +55,10 @@ export const ServiceCard: React.FC<{ service: EasyFuelService }> = ({ service })
         <div className="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors" />
       </div>
       <div className="w-full md:w-1/2 p-6 lg:p-8 flex flex-col justify-center">
-        <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-4 group-hover:bg-[#E17226] transition-colors duration-300">
-          <Icon className="w-6 h-6 text-[#E17226] group-hover:text-white transition-colors duration-300" />
+        <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-4 group-hover:bg-brand-orange transition-colors duration-300">
+          <Icon className="w-6 h-6 text-brand-orange group-hover:text-white transition-colors duration-300" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#E17226] transition-colors">
+        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-orange transition-colors">
           {service.title}
         </h3>
         <p className="text-gray-500 text-sm leading-relaxed">

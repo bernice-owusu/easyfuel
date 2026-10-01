@@ -65,16 +65,16 @@ const USE_CASES: { title: string; desc: string; icon: LucideIcon }[] = [
 
 export const Industries: React.FC = () => {
   return (
-    <section className="py-20 lg:py-28 bg-[#f8f9fa]">
+    <section className="py-20 lg:py-28 bg-brand-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#E17226] font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
+          <span className="text-brand-orange font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
             Who Is EasyFuel For?
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-heading leading-tight">
             Built for Modern{" "}
-            <b className="text-[#E17226]">Oil Marketing Companies</b>
+            <b className="text-brand-orange">Oil Marketing Companies</b>
           </h2>
           <p className="mt-4 text-gray-500 text-base max-w-xl mx-auto">
             EasyFuel is an enterprise operations and control platform for the
@@ -91,9 +91,9 @@ export const Industries: React.FC = () => {
                 return (
                   <div
                     key={u.name}
-                    className="rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#E17226]/30 hover:-translate-y-0.5 transition-all duration-300 p-5 flex items-start gap-4"
+                    className="rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-lg hover:border-brand-orange/30 hover:-translate-y-0.5 transition-all duration-300 p-5 flex items-start gap-4"
                   >
-                    <span className="w-11 h-11 rounded-xl bg-orange-50 border border-orange-100 text-[#E17226] flex items-center justify-center shrink-0">
+                    <span className="w-11 h-11 rounded-xl bg-orange-50 border border-orange-100 text-brand-orange flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </span>
                     <div>
@@ -121,7 +121,7 @@ export const Industries: React.FC = () => {
                   const Icon = uc.icon;
                   return (
                     <div key={uc.title} className="flex items-start gap-4">
-                      <span className="w-10 h-10 rounded-xl bg-[#E17226]/15 border border-[#E17226]/30 text-[#E17226] flex items-center justify-center shrink-0">
+                      <span className="w-10 h-10 rounded-xl bg-brand-orange/15 border border-brand-orange/30 text-brand-orange flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5" />
                       </span>
                       <div>
@@ -138,7 +138,7 @@ export const Industries: React.FC = () => {
               </div>
               <a
                 href="#quotation"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#E17226] hover:gap-3 transition-all"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-orange hover:gap-3 transition-all"
               >
                 Discuss your network
                 <ArrowRight className="w-4 h-4" />

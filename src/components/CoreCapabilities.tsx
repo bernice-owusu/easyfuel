@@ -67,12 +67,12 @@ export const CoreCapabilities: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left: Heading */}
           <div className="lg:col-span-4 lg:sticky lg:top-28">
-            <span className="text-[#E17226] font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
+            <span className="text-brand-orange font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
               Core Capabilities
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-heading leading-tight mb-5">
               Everything You Need to{" "}
-              <b className="text-[#E17226]">Control Your Fuel Operations</b>
+              <b className="text-brand-orange">Control Your Fuel Operations</b>
             </h2>
             <p className="text-gray-500 text-base leading-relaxed mb-6">
               Five connected capabilities that turn fragmented station processes
@@ -94,22 +94,22 @@ export const CoreCapabilities: React.FC = () => {
               return (
                 <div
                   key={cap.number}
-                  className="group relative rounded-3xl bg-[#f8f9fa] border border-gray-100 hover:border-[#E17226]/30 hover:bg-white hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 p-6 sm:p-7 flex items-start gap-5"
+                  className="group relative rounded-3xl bg-brand-light border border-gray-100 hover:border-brand-orange/30 hover:bg-white hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 p-6 sm:p-7 flex items-start gap-5"
                 >
-                  <span className="font-teko text-5xl font-bold text-gray-200 group-hover:text-[#E17226]/20 transition-colors leading-none select-none">
+                  <span className="font-teko text-5xl font-bold text-gray-200 group-hover:text-brand-orange/20 transition-colors leading-none select-none">
                     {cap.number}
                   </span>
-                  <span className="w-12 h-12 rounded-2xl bg-white border border-gray-200 text-[#E17226] flex items-center justify-center shrink-0 group-hover:bg-[#E17226] group-hover:border-[#E17226] group-hover:text-white transition-colors">
+                  <span className="w-12 h-12 rounded-2xl bg-white border border-gray-200 text-brand-orange flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange group-hover:text-white transition-colors">
                     <Icon className="w-6 h-6" />
                   </span>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1.5 group-hover:text-[#E17226] transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1.5 group-hover:text-brand-orange transition-colors">
                       {cap.title}
                     </h3>
                     <p className="text-sm text-gray-500 leading-relaxed mb-3">
                       {cap.description}
                     </p>
-                    <span className="inline-block text-xs font-semibold text-[#E17226] bg-orange-50 border border-orange-100 rounded-full px-3 py-1">
+                    <span className="inline-block text-xs font-semibold text-brand-orange bg-orange-50 border border-orange-100 rounded-full px-3 py-1">
                       {cap.message}
                     </span>
                   </div>

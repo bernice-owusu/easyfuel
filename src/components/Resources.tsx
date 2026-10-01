@@ -94,8 +94,8 @@ export const Resources: React.FC = () => {
                     <span
                       className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
                         isOpen
-                          ? "bg-[#E17226] text-white rotate-45"
-                          : "bg-orange-50 text-[#E17226]"
+                          ? "bg-brand-orange text-white rotate-45"
+                          : "bg-orange-50 text-brand-orange"
                       }`}
                     >
                       <Plus className="w-4 h-4" />

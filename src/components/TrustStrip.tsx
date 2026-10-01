@@ -43,7 +43,7 @@ export const TrustStrip: React.FC = () => {
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold text-brand-heading">
             One Platform.{" "}
-            <span className="text-[#E17226]">Complete Operational Control.</span>
+            <span className="text-brand-orange">Complete Operational Control.</span>
           </h2>
         </div>
 
@@ -53,9 +53,9 @@ export const TrustStrip: React.FC = () => {
             return (
               <div
                 key={item.title}
-                className="group rounded-2xl bg-[#f8f9fa] border border-gray-100 hover:bg-brand-navy hover:border-brand-navy hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-5 text-center flex flex-col items-center"
+                className="group rounded-2xl bg-brand-light border border-gray-100 hover:bg-brand-navy hover:border-brand-navy hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-5 text-center flex flex-col items-center"
               >
-                <span className="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 text-[#E17226] flex items-center justify-center mb-3.5 transition-colors group-hover:bg-[#E17226] group-hover:border-[#E17226] group-hover:text-white">
+                <span className="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 text-brand-orange flex items-center justify-center mb-3.5 transition-colors group-hover:bg-brand-orange group-hover:border-brand-orange group-hover:text-white">
                   <Icon className="w-5 h-5" />
                 </span>
                 <h3 className="font-bold text-sm text-gray-900 mb-1.5 group-hover:text-white transition-colors">

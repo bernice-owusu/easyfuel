@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({
                 className="h-20 w-auto"
               />
             </a>
-            <p className="text-sm text-[#E17226] font-semibold tracking-wide mb-4">
+            <p className="text-sm text-brand-orange font-semibold tracking-wide mb-4">
               Every Litre Accounted For.
             </p>
             <p className="text-white text-sm leading-relaxed max-w-sm mb-6">
@@ -33,23 +33,23 @@ export const Footer: React.FC<FooterProps> = ({
             </p>
             <div className="space-y-2.5 text-sm">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#E17226] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
                 <span>No 6 Eseefo Street, Asylum Down, Accra</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#E17226] shrink-0" />
+                <Mail className="w-4 h-4 text-brand-orange shrink-0" />
                 <a
                   href="mailto:info@easyfuel.com"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   info@easyfuel.com
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#E17226] shrink-0" />
+                <Phone className="w-4 h-4 text-brand-orange shrink-0" />
                 <a
                   href="tel:+233302254340"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   (0)302 254340
                 </a>
@@ -60,7 +60,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 text-white hover:text-white hover:border-[#E17226] hover:bg-[#E17226] flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 text-white hover:text-white hover:border-brand-orange hover:bg-brand-orange flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -69,7 +69,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 text-white hover:text-white hover:border-[#E17226] hover:bg-[#E17226] flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-full bg-white/5 border border-white/10 text-white hover:text-white hover:border-brand-orange hover:bg-brand-orange flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#solutions"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Solutions
                 </a>
@@ -94,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#how-it-works"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   How It Works
                 </a>
@@ -102,7 +102,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#integrations"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Integrations
                 </a>
@@ -110,7 +110,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#security"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Security
                 </a>
@@ -127,7 +127,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#about"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   About EasyFuel
                 </a>
@@ -135,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#contact"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Contact
                 </a>
@@ -143,7 +143,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#quotation"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Request a Demo
                 </a>
@@ -160,7 +160,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#resources"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Insights
                 </a>
@@ -168,7 +168,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#resources"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Guides
                 </a>
@@ -176,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#resources"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   FAQs
                 </a>
@@ -184,7 +184,7 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a
                   href="#resources"
-                  className="hover:text-[#E17226] transition-colors"
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Downloads
                 </a>
@@ -202,7 +202,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={onOpenPrivacy}
-                  className="hover:text-[#E17226] transition-colors focus:outline-none cursor-pointer"
+                  className="hover:text-brand-orange transition-colors focus:outline-none cursor-pointer"
                 >
                   Privacy Policy
                 </button>
@@ -211,7 +211,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={onOpenTerms}
-                  className="hover:text-[#E17226] transition-colors focus:outline-none cursor-pointer"
+                  className="hover:text-brand-orange transition-colors focus:outline-none cursor-pointer"
                 >
                   Terms of Use
                 </button>
@@ -220,7 +220,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={onOpenPrivacy}
-                  className="hover:text-[#E17226] transition-colors focus:outline-none cursor-pointer"
+                  className="hover:text-brand-orange transition-colors focus:outline-none cursor-pointer"
                 >
                   Cookie Policy
                 </button>

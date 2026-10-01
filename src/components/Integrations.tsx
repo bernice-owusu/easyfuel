@@ -55,12 +55,12 @@ export const Integrations: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#E17226] font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
+          <span className="text-brand-orange font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
             Integrations
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-heading leading-tight">
             Connect EasyFuel to Your{" "}
-            <b className="text-[#E17226]">Existing Infrastructure</b>
+            <b className="text-brand-orange">Existing Infrastructure</b>
           </h2>
           <p className="mt-4 text-gray-500 text-base max-w-xl mx-auto">
             EasyFuel is designed to integrate with the systems that already
@@ -75,7 +75,7 @@ export const Integrations: React.FC = () => {
             return (
               <div
                 key={g.title}
-                className="rounded-3xl bg-[#f8f9fa] border border-gray-100 p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="rounded-3xl bg-brand-light border border-gray-100 p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <span className="w-12 h-12 rounded-2xl bg-brand-navy text-brand-orange flex items-center justify-center mb-5">
                   <Icon className="w-6 h-6" />
@@ -89,7 +89,7 @@ export const Integrations: React.FC = () => {
                       key={item}
                       className="text-sm text-gray-600 flex items-center gap-2.5"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E17226]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
                       {item}
                     </li>
                   ))}

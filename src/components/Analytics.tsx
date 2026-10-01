@@ -38,12 +38,12 @@ export const Analytics: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#E17226] font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
+          <span className="text-brand-orange font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
             Analytics
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-heading leading-tight">
             Your Stations. Your Data.{" "}
-            <b className="text-[#E17226]">Your Decisions.</b>
+            <b className="text-brand-orange">Your Decisions.</b>
           </h2>
           <p className="mt-4 text-gray-500 text-base max-w-xl mx-auto">
             Give executives, finance teams and operations managers the
@@ -58,16 +58,16 @@ export const Analytics: React.FC = () => {
               key={k.label}
               className="rounded-2xl bg-brand-navy p-6 text-center hover:-translate-y-1 transition-all duration-300 shadow-lg shadow-brand-navy/20"
             >
-              <div className="text-2xl font-bold text-[#E17226]">{k.value}</div>
+              <div className="text-2xl font-bold text-brand-orange">{k.value}</div>
               <div className="mt-1 text-xs font-medium text-white">{k.label}</div>
             </div>
           ))}
         </div>
 
         {/* Views */}
-        <div className="rounded-3xl border border-gray-100 bg-[#f8f9fa] p-7 lg:p-9">
+        <div className="rounded-3xl border border-gray-100 bg-brand-light p-7 lg:p-9">
           <div className="flex items-center gap-2.5 mb-6">
-            <CheckCircle2 className="w-5 h-5 text-[#E17226]" />
+            <CheckCircle2 className="w-5 h-5 text-brand-orange" />
             <h3 className="text-lg font-bold text-gray-900">
               Dashboard views included with EasyFuel
             </h3>
@@ -78,9 +78,9 @@ export const Analytics: React.FC = () => {
               return (
                 <div
                   key={v.name}
-                  className="group flex items-center gap-3 rounded-xl bg-white border border-gray-100 px-4 py-3 hover:border-[#E17226]/40 hover:shadow-md transition-all cursor-default"
+                  className="group flex items-center gap-3 rounded-xl bg-white border border-gray-100 px-4 py-3 hover:border-brand-orange/40 hover:shadow-md transition-all cursor-default"
                 >
-                  <span className="w-9 h-9 rounded-lg bg-orange-50 border border-orange-100 text-[#E17226] flex items-center justify-center shrink-0 group-hover:bg-[#E17226] group-hover:border-[#E17226] group-hover:text-white transition-colors">
+                  <span className="w-9 h-9 rounded-lg bg-orange-50 border border-orange-100 text-brand-orange flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange group-hover:text-white transition-colors">
                     <Icon className="w-4 h-4" />
                   </span>
                   <span className="text-sm font-semibold text-gray-800">

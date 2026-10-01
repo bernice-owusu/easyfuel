@@ -37,18 +37,18 @@ export const QuotationSection: React.FC = () => {
   };
 
   const inputClass =
-    "w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-[#E17226] focus:ring-2 focus:ring-[#E17226]/20 outline-none transition-all text-gray-800 bg-white";
+    "w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 outline-none transition-all text-gray-800 bg-white";
 
   return (
-    <section id="quotation" className="py-20 lg:py-28 bg-[#f8f9fa] relative">
+    <section id="quotation" className="py-20 lg:py-28 bg-brand-light relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-[#E17226] font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
+          <span className="text-brand-orange font-semibold text-sm tracking-wider uppercase bg-orange-50 px-3.5 py-1.5 rounded-full border border-orange-100 inline-block mb-3">
             Demo
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-heading leading-tight">
-            Request a Free <b className="text-[#E17226]">Demo</b> of <br />
+            Request a Free <b className="text-brand-orange">Demo</b> of <br />
             the <b className="text-brand-navy">Easy Fuel</b> Platform
           </h2>
           <p className="mt-4 text-gray-500 text-base max-w-xl mx-auto">
@@ -61,7 +61,7 @@ export const QuotationSection: React.FC = () => {
         <div className="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100 relative overflow-hidden">
           {submitted ? (
             <div className="py-12 text-center">
-              <div className="w-16 h-16 bg-orange-100 text-[#E17226] rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-orange-100 text-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-10 h-10" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -103,7 +103,7 @@ export const QuotationSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handleReset}
-                className="px-8 py-3 bg-[#E17226] hover:bg-[#C65F1D] text-white font-semibold rounded-full transition-colors"
+                className="px-8 py-3 bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold rounded-full transition-colors"
               >
                 Submit Another Request
               </button>
@@ -294,7 +294,7 @@ export const QuotationSection: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <CalendarCheck className="w-5 h-5 text-[#E17226] shrink-0" />
+                  <CalendarCheck className="w-5 h-5 text-brand-orange shrink-0" />
                   <span>We'll confirm a convenient time with your team.</span>
                 </div>
               </div>
@@ -324,7 +324,7 @@ export const QuotationSection: React.FC = () => {
               <button
                 type="submit"
                 id="request-demo-btn"
-                className="w-full py-4 bg-[#E17226] hover:bg-[#C65F1D] text-white font-semibold text-base rounded-xl transition-all shadow-lg shadow-orange-600/25 flex items-center justify-center gap-2 hover:translate-y-[-1px] cursor-pointer"
+                className="w-full py-4 bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold text-base rounded-xl transition-all shadow-lg shadow-orange-600/25 flex items-center justify-center gap-2 hover:translate-y-[-1px] cursor-pointer"
               >
                 <span>Request a Demo</span>
                 <Send className="w-4 h-4" />
@@ -334,12 +334,12 @@ export const QuotationSection: React.FC = () => {
 
           {/* Business Hours Footer Note */}
           <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-center gap-3 text-sm text-gray-500 text-center">
-            <PhoneCall className="w-4 h-4 text-[#E17226] shrink-0" />
+            <PhoneCall className="w-4 h-4 text-brand-orange shrink-0" />
             <span>
               Questions? Call us{" "}
               <a
                 href="tel:+233302254340"
-                className="text-gray-900 font-semibold hover:text-[#C65F1D] transition-colors"
+                className="text-gray-900 font-semibold hover:text-brand-orange-hover transition-colors"
               >
                 +233302254340
               </a>{" "}

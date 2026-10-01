@@ -26,10 +26,10 @@ const getActiveFromHash = (): string => {
 };
 
 interface HeaderProps {
-  onOpenQuote: () => void;
+  onOpenSignup: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenSignup }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 lg:gap-8">
             {/* Address */}
             <span className="hidden sm:inline-flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-[#E17226]" />
+              <MapPin className="w-3.5 h-3.5 text-brand-orange" />
               No 6 Eseefo Street, Asylum Down, Accra
             </span>
             {/* Phone */}
@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               href="tel:+233302254340"
               className="inline-flex items-center gap-2 hover:text-white transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-[#E17226]" />
+              <Phone className="w-3.5 h-3.5 text-brand-orange" />
               (0)302 254340
             </a>
             {/* Email */}
@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               href="mailto:info@easyfuel.com"
               className="inline-flex items-center gap-2 hover:text-white transition-colors"
             >
-              <Mail className="w-3.5 h-3.5 text-[#E17226]" />
+              <Mail className="w-3.5 h-3.5 text-brand-orange" />
               info@easyfuel.com
             </a>
           </div>
@@ -140,8 +140,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                     href={item.href}
                     className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-md font-medium text-[15px] transition-colors ${
                       item.name === activeItem
-                        ? "text-[#E17226]"
-                        : "text-gray-700 hover:text-[#E17226]"
+                        ? "text-brand-orange"
+                        : "text-gray-700 hover:text-brand-orange"
                     }`}
                   >
                     <span>{item.name}</span>
@@ -173,14 +173,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
             <div className="flex items-center gap-3 ml-auto">
               <button
                 type="button"
-                onClick={onOpenQuote}
-                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-[#E17226] hover:bg-[#C65F1D] text-white font-medium text-sm sm:text-base rounded-full shadow-lg shadow-orange-900/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                onClick={onOpenSignup}
+                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 bg-brand-orange hover:bg-brand-orange-hover text-white font-medium text-sm sm:text-base rounded-full shadow-lg shadow-orange-900/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
-                Request a Demo
+                Sign Up
               </button>
               <a
                 href="https://easyfuel.app/login"
-                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 border-2 border-[#E17226] text-[#E17226] font-medium text-sm sm:text-base rounded-full transition-all hover:scale-[1.02] active:scale-[0.98]"
+                target="_blank"
+                className="hidden md:inline-flex items-center justify-center px-6 py-2.5 border-2 border-brand-orange text-brand-orange font-medium text-sm sm:text-base rounded-full transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 Login
               </a>
@@ -232,8 +233,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block py-2 text-base font-semibold transition-colors ${
                       item.name === activeItem
-                        ? "text-[#E17226]"
-                        : "text-gray-700 hover:text-[#E17226]"
+                        ? "text-brand-orange"
+                        : "text-gray-700 hover:text-brand-orange"
                     }`}
                   >
                     {item.name}
@@ -245,7 +246,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                           key={sub.name}
                           href={sub.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block py-1 text-sm text-gray-500 hover:text-[#E17226]"
+                          className="block py-1 text-sm text-gray-500 hover:text-brand-orange"
                         >
                           {sub.name}
                         </a>
@@ -262,15 +263,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenQuote();
+                  onOpenSignup();
                 }}
-                className="w-full py-3 bg-[#E17226] hover:bg-[#C65F1D] text-white text-center font-semibold rounded-full transition-colors"
+                className="w-full py-3 bg-brand-orange hover:bg-brand-orange-hover text-white text-center font-semibold rounded-full transition-colors"
               >
-                Request a Demo
+                Sign Up
               </button>
               <a
                 href="https://easyfuel.app/login"
-                className="w-full py-3 border-2 border-[#E17226] text-[#E17226] hover:bg-[#E17226] hover:text-white text-center font-semibold rounded-full transition-colors"
+                className="w-full py-3 border-2 border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white text-center font-semibold rounded-full transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Login
