@@ -430,15 +430,6 @@ export const ApplicationFormStep: React.FC<Props> = ({
         {errors.privacy_accepted && (
           <p className={`${ERROR_CLASS} ml-7`}>{errors.privacy_accepted}</p>
         )}
-
-        <p className="flex items-start gap-2 text-xs text-gray-500 pt-2 border-t border-gray-200/70">
-          <ShieldCheck className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-          <span>
-            Consent version {consentVersion}. Submitting an application does not
-            create an account — a System Administrator reviews it first, and
-            only then is your organisation activated.
-          </span>
-        </p>
       </fieldset>
 
       {/* Honeypot — must stay empty */}

@@ -21,7 +21,6 @@ const INTERESTS_OPTIONS: { value: DemoInterest; label: string }[] = [
   { value: "analytics", label: "Advanced Analytics" },
   { value: "payments", label: "Payments & Billing" },
   { value: "integrations", label: "Integrations" },
-  { value: "security", label: "Security & Compliance" },
 ];
 
 export const QuotationSection: React.FC = () => {
